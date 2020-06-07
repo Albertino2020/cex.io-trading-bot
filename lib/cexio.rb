@@ -52,5 +52,9 @@ module CEX
     def trade_history(since = 1, couple = "GHS/BTC")
       self.api_call("trade_history", { :since => since.to_s }, false, couple)
     end
+
+    def balance
+      self.api_call("balance", {}, true)
+    end
   end
 end

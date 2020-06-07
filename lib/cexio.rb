@@ -80,5 +80,9 @@ module CEX
     def get_order_tx(order_id)
       self.api_call("get_order_tx", { :id => order_id.to_s }, true, "", true)
     end
+
+    def get_address(currency)
+      self.api_call("get_address", { :currency => currency }, true, "", true)
+    end
   end
 end

@@ -1,2 +1,4 @@
 #!/usr/bin/env ruby
-puts "Congratulations! My Bot project setup completed!"
+# frozen_string_literal: true
+
+puts 'Congratulations! My Bot project setup completed!'

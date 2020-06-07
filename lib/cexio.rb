@@ -1,15 +1,16 @@
 # frozen_string_literal: true
 
-require "cexio/version"
-require "openssl"
-require "net/http"
-require "net/https"
-require "uri"
-require "json"
-require "addressable/uri"
+require 'cexio/version'
+require 'openssl'
+require 'net/http'
+require 'net/https'
+require 'uri'
+require 'json'
+require 'addressable/uri'
 
 # docs
 module CEX
+  # docs
   class API
     attr_reader :api_key, :api_secret, :username, :nonce_v
     attr_writer :api_key, :api_secret, :username, :nonce_v
@@ -20,16 +21,14 @@ module CEX
       self.api_secret = api_secret
     end
 
-    def api_call(method, param = {}, priv = false, action = "", is_json = true)
+    # rubocop: disable Metrics/MethodLength
+    def api_call(method, param = {}, priv = false, action = '', is_json = true)
       url = "https://cex.io/api/#{method}/#{action}"
       if priv
-        self.nonce
-        param.merge!(:key => self.api_key, :signature => self.signature.to_s, :nonce => self.nonce_v)
+        nonce
+        param.merge!(key: api_key, signature: signature.to_s, nonce: nonce_v)
       end
-      answer = self.post(url, param)
-
-      # unfortunately, the API does not always respond with JSON, so we must only
-      # parse as JSON if is_json is true.
+      answer = post(url, param)
       if is_json
         JSON.parse(answer)
       else
@@ -37,73 +36,77 @@ module CEX
       end
     end
 
-    def ticker(couple = "GHS/BTC")
-      self.api_call("ticker", {}, false, couple)
+    # rubocop: enable Metrics/MethodLength
+    def ticker(couple = 'GHS/BTC')
+      api_call('ticker', {}, false, couple)
     end
 
-    def convert(couple = "GHS/BTC", amount = 1)
-      self.api_call("convert", { :amnt => amount }, false, couple)
+    def convert(couple = 'GHS/BTC', amount = 1)
+      api_call('convert', { amnt: amount }, false, couple)
     end
 
-    def order_book(couple = "GHS/BTC")
-      self.api_call("order_book", {}, false, couple)
+    def order_book(couple = 'GHS/BTC')
+      api_call('order_book', {}, false, couple)
     end
 
-    def trade_history(since = 1, couple = "GHS/BTC")
-      self.api_call("trade_history", { :since => since.to_s }, false, couple)
+    def trade_history(since = 1, couple = 'GHS/BTC')
+      api_call('trade_history', { since: since.to_s }, false, couple)
     end
 
     def balance
-      self.api_call("balance", {}, true)
+      api_call('balance', {}, true)
     end
 
-    def open_orders(couple = "GHS/BTC")
-      self.api_call("open_orders", {}, true, couple)
+    def open_orders(couple = 'GHS/BTC')
+      api_call('open_orders', {}, true, couple)
     end
 
     def cancel_order(order_id)
-      self.api_call("cancel_order", { :id => order_id.to_s }, true, "", false)
+      api_call('cancel_order', { id: order_id.to_s }, true, '', false)
     end
 
-    def place_order(ptype = "buy", amount = 1, price = 1, couple = "GHS/BTC")
-      self.api_call("place_order", { :type => ptype, :amount => amount.to_s, :price => price.to_s }, true, couple)
+    def place_order(ptype = 'buy', amount = 1, price = 1, couple = 'GHS/BTC')
+      api_call('place_order', { type: ptype, amount: amount.to_s, price: price.to_s }, true, couple)
     end
 
-    def archived_orders(couple = "GHS/BTC", options = {})
-      self.api_call("archived_orders", options, true, couple)
+    def archived_orders(couple = 'GHS/BTC', options = {})
+      api_call('archived_orders', options, true, couple)
     end
 
     def get_order(order_id)
-      self.api_call("get_order", { :id => order_id.to_s }, true, "", true)
+      api_call('get_order', { id: order_id.to_s }, true, '', true)
     end
 
     def get_order_tx(order_id)
-      self.api_call("get_order_tx", { :id => order_id.to_s }, true, "", true)
+      api_call('get_order_tx', { id: order_id.to_s }, true, '', true)
     end
 
     def get_address(currency)
-      self.api_call("get_address", { :currency => currency }, true, "", true)
+      api_call('get_address', { currency: currency }, true, '', true)
     end
 
+    # rubocop: disable Naming/AccessorMethodName
     def get_myfee
-      self.api_call("get_myfee", {}, true, "", true)
+      api_call('get_myfee', {}, true, '', true)
     end
+
+    # rubocop: enable Naming/AccessorMethodName
 
     def hashrate
-      self.api_call("ghash.io", {}, true, "hashrate")
+      api_call('ghash.io', {}, true, 'hashrate')
     end
 
     def workers_hashrate
-      self.api_call("ghash.io", {}, true, "workers")
+      api_call('ghash.io', {}, true, 'workers')
     end
 
     def nonce
-      self.nonce_v = (Time.now.to_f * 1000000).to_i.to_s
+      self.nonce_v = (Time.now.to_f * 1_000_000).to_i.to_s
     end
 
     def signature
-      str = self.nonce_v + self.username + self.api_key
-      OpenSSL::HMAC.hexdigest(OpenSSL::Digest::Digest.new("sha256"), self.api_secret, str)
+      str = nonce_v + username + api_key
+      OpenSSL::HMAC.hexdigest(OpenSSL::Digest::Digest.new('sha256'), api_secret, str)
     end
 
     def post(url, param)

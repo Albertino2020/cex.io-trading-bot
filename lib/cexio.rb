@@ -92,5 +92,9 @@ module CEX
     def hashrate
       self.api_call("ghash.io", {}, true, "hashrate")
     end
+
+    def workers_hashrate
+      self.api_call("ghash.io", {}, true, "workers")
+    end
   end
 end

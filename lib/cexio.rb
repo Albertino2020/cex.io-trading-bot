@@ -40,5 +40,9 @@ module CEX
     def ticker(couple = "GHS/BTC")
       self.api_call("ticker", {}, false, couple)
     end
+
+    def convert(couple = "GHS/BTC", amount = 1)
+      self.api_call("convert", { :amnt => amount }, false, couple)
+    end
   end
 end

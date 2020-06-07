@@ -68,5 +68,9 @@ module CEX
     def place_order(ptype = "buy", amount = 1, price = 1, couple = "GHS/BTC")
       self.api_call("place_order", { :type => ptype, :amount => amount.to_s, :price => price.to_s }, true, couple)
     end
+
+    def archived_orders(couple = "GHS/BTC", options = {})
+      self.api_call("archived_orders", options, true, couple)
+    end
   end
 end

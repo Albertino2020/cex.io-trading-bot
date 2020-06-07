@@ -96,5 +96,9 @@ module CEX
     def workers_hashrate
       self.api_call("ghash.io", {}, true, "workers")
     end
+
+    def nonce
+      self.nonce_v = (Time.now.to_f * 1000000).to_i.to_s
+    end
   end
 end

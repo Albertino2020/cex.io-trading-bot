@@ -56,5 +56,9 @@ module CEX
     def balance
       self.api_call("balance", {}, true)
     end
+
+    def open_orders(couple = "GHS/BTC")
+      self.api_call("open_orders", {}, true, couple)
+    end
   end
 end

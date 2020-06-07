@@ -72,5 +72,9 @@ module CEX
     def archived_orders(couple = "GHS/BTC", options = {})
       self.api_call("archived_orders", options, true, couple)
     end
+
+    def get_order(order_id)
+      self.api_call("get_order", { :id => order_id.to_s }, true, "", true)
+    end
   end
 end

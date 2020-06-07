@@ -105,5 +105,14 @@ module CEX
       str = self.nonce_v + self.username + self.api_key
       OpenSSL::HMAC.hexdigest(OpenSSL::Digest::Digest.new("sha256"), self.api_secret, str)
     end
+
+    def post(url, param)
+      uri = URI.parse(url)
+      https = Net::HTTP.new(uri.host, uri.port)
+      https.use_ssl = true
+      params = Addressable::URI.new
+      params.query_values = param
+      https.post(uri.path, params.query).body
+    end
   end
 end

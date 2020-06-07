@@ -36,5 +36,9 @@ module CEX
         answer
       end
     end
+
+    def ticker(couple = "GHS/BTC")
+      self.api_call("ticker", {}, false, couple)
+    end
   end
 end

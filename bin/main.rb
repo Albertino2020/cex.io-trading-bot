@@ -1,3 +1,2 @@
-# frozen_string_literal: true
-
-require 'rubygems'
+#!/usr/bin/env ruby
+puts "Congratulations! My Bot project setup completed!"

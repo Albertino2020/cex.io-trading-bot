@@ -88,5 +88,9 @@ module CEX
     def get_myfee
       self.api_call("get_myfee", {}, true, "", true)
     end
+
+    def hashrate
+      self.api_call("ghash.io", {}, true, "hashrate")
+    end
   end
 end

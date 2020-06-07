@@ -100,5 +100,10 @@ module CEX
     def nonce
       self.nonce_v = (Time.now.to_f * 1000000).to_i.to_s
     end
+
+    def signature
+      str = self.nonce_v + self.username + self.api_key
+      OpenSSL::HMAC.hexdigest(OpenSSL::Digest::Digest.new("sha256"), self.api_secret, str)
+    end
   end
 end

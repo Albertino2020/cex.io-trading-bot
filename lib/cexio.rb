@@ -48,5 +48,9 @@ module CEX
     def order_book(couple = "GHS/BTC")
       self.api_call("order_book", {}, false, couple)
     end
+
+    def trade_history(since = 1, couple = "GHS/BTC")
+      self.api_call("trade_history", { :since => since.to_s }, false, couple)
+    end
   end
 end

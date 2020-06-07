@@ -60,5 +60,9 @@ module CEX
     def open_orders(couple = "GHS/BTC")
       self.api_call("open_orders", {}, true, couple)
     end
+
+    def cancel_order(order_id)
+      self.api_call("cancel_order", { :id => order_id.to_s }, true, "", false)
+    end
   end
 end

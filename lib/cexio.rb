@@ -84,5 +84,9 @@ module CEX
     def get_address(currency)
       self.api_call("get_address", { :currency => currency }, true, "", true)
     end
+
+    def get_myfee
+      self.api_call("get_myfee", {}, true, "", true)
+    end
   end
 end

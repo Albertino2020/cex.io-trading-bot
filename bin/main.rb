@@ -6,7 +6,7 @@ puts "Are you familiar with the CEX.IO Trading Bot?"
 familiar = gets.chomp.upcase == "Y" ? true : false
 
 if familiar
-  puts "Do you have CEX.iO authentication credentials?"
+  puts "Do you have CEX.iO API authorization?"
 else
   puts "Welcome to pleasure of automated trading on the world's best cryptocurrency market!"
   puts "This software atomates all market operations of buying, selling, placing orders, etc., in a secure and profitable way."
@@ -31,4 +31,12 @@ else
   puts "Autorization is required to acess this market."
   puts "Do you whant to run the Bot in a demo mode?"
   demo = gets.chomp.upcase == "Y" ? true : false
+end
+if authorized
+  connect = CEX::API.new(usr, api_key, secret)
+  connect.balance
+  connect.trade
+elsif demo
+  puts "Bot is running in the demo mode."
+  connect = CEX::API.new(demo_usr, demo_key, demo_secret)
 end

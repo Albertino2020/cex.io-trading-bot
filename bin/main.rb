@@ -1,16 +1,34 @@
 #!/usr/bin/env ruby
-require_relative '../lib/cexio'
+require_relative "../lib/cexio"
 
-puts 'Testing connecting with the CEX.IO API'
-usr = 'up100854764'
-api_key = 'KRBDeKmP5KkEiWUSpYcR0HcdgQg'
-sec = '2NR1o4bf3OOn7HRPdk5HM4jzJyc'
-cex = CEX::API.new(usr, api_key, sec)
+puts "Are you familiar with the CEX.IO Trading Bot?"
 
-cex.balance.each do |key, value|
-  print "#{key} : "
-  value.each { |key1, value1| print "#{key1} : #{value1} " } if value.is_a?(Hash)
-  puts ''
+familiar = gets.chomp.upcase == "Y" ? true : false
+
+if familiar
+  puts "Do you have CEX.iO authentication credentials?"
+else
+  puts "Welcome to pleasure of automated trading on the world's best cryptocurrency market!"
+  puts "This software atomates all market operations of buying, selling, placing orders, etc., in a secure and profitable way."
+  puts "You are not required to have any trading experience. You all need to provide your authorizations details."
+  puts "CEX.io Bot does the job.!"
+  puts "Do you have autorization to access this market?"
 end
 
-puts 'Congratulations! My Bot project setup completed!'
+authorized = gets.chomp.upcase == "Y" ? true : false
+if authorized
+  puts "Please enter your authorization details:"
+  print "User Name: "
+  usr = gets.chomp
+  puts ""
+  print "API KEY: "
+  api_key = gets.chomp
+  puts ""
+  print "Secret Code: "
+  secret = gets.chomp
+  puts ""
+else
+  puts "Autorization is required to acess this market."
+  puts "Do you whant to run the Bot in a demo mode?"
+  demo = gets.chomp.upcase == "Y" ? true : false
+end

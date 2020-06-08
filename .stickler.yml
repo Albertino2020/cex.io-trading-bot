@@ -7,6 +7,7 @@ linters:
   
   files:
     ignore:
+      - "stickler"
       - "Guardfile"
       - "Rakefile"
       - "node_modules/**/*"

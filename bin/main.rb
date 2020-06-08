@@ -1,6 +1,4 @@
 #!/usr/bin/env ruby
-# frozen_string_literal: true
-
 require_relative '../lib/cexio'
 
 puts 'Testing connecting with the CEX.IO API'

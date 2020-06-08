@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # require 'cexio/version'
 require 'openssl'
 require 'net/http'
@@ -21,7 +19,6 @@ module CEX
       self.api_secret = api_secret
     end
 
-    # rubocop: disable Metrics/MethodLength
     def api_call(method, param = {}, priv = false, action = '', is_json = true)
       url = "https://cex.io/api/#{method}/#{action}"
       if priv
@@ -36,7 +33,6 @@ module CEX
       end
     end
 
-    # rubocop: enable Metrics/MethodLength
     def ticker(couple = 'GHS/BTC')
       api_call('ticker', {}, false, couple)
     end

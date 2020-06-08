@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'cexio/version'
+# require 'cexio/version'
 require 'openssl'
 require 'net/http'
 require 'net/https'

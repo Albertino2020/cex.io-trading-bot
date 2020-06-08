@@ -39,15 +39,13 @@ AllCops:
   Layout/MultilineMethodCallIndentation:
     Enabled: true
     EnforcedStyle: indented
-  
-  Style/HashEachMethods:
-    Enabled: true
-  Style/HashTransformKeys:
-    Enabled: true
-  Style/HashTransformValues:
-    Enabled: true
-  
   Lint/RaiseException:
-    Enabled: true
+    Enabled: false
   Lint/StructNewOverride:
-    Enabled: true
+    Enabled: false
+  Style/HashEachMethods:
+    Enabled: false
+  Style/HashTransformKeys:
+    Enabled: false
+  Style/HashTransformValues:
+    Enabled: false

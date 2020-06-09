@@ -3,7 +3,6 @@ require_relative "../lib/cexio"
 DEMO_USR = "up131139167"
 DEMO_KEY = "NJGrN6Dev9M57nyxQDaFQzZa4Q"
 DEMO_SECRET = "MI87dH6sDIh1g0aQQNfV1PdaimQ"
-OPS = ["balance", "autotrade", "get_myfee", "order_book", "current_orders", "cancel_order", "place_order", "convert"]
 
 puts "Are you familiar with the CEX.IO Trading Bot?"
 
@@ -56,11 +55,11 @@ puts "Please choose your desired operation:
 9. Get ticker"
 operation = gets.to_i
 if operation == 1
-  connect.balance.each do |key, value|
+  (connect.OPS(operation - 1)).each do |key, value|
     print "#{key} : "
     value.each { |key1, value1| print "#{key1} : #{value1} " } if value.is_a?(Hash)
     puts ""
   end
 elsif operation == 2
-  connect.trade
+  connect.autotrade
 end

@@ -12,11 +12,15 @@ module CEX
   class API
     attr_reader :api_key, :api_secret, :username, :nonce_v
     attr_writer :api_key, :api_secret, :username, :nonce_v
-
+    OPS = ["balance", "autotrade", "get_myfee", "order_book", "current_orders", "cancel_order", "place_order", "convert"].freeze
     def initialize(username, api_key, api_secret)
       self.username = username
       self.api_key = api_key
       self.api_secret = api_secret
+    end
+
+    def OPS(n)
+      send(OPS[n])
     end
 
     def api_call(method, param = {}, priv = false, action = '', is_json = true)

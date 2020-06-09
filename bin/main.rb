@@ -3,23 +3,25 @@ require_relative "../lib/cexio"
 DEMO_USR = "up131139167"
 DEMO_KEY = "NJGrN6Dev9M57nyxQDaFQzZa4Q"
 DEMO_SECRET = "MI87dH6sDIh1g0aQQNfV1PdaimQ"
+OPS = ["balance", "autotrade", "get_myfee", "order_book", "current_orders", "cancel_order", "place_order", "convert"]
+
 puts "Are you familiar with the CEX.IO Trading Bot?"
 
 familiar = gets.chomp.upcase == "Y" ? true : false
 
 if familiar
-  puts "Do you have CEX.iO API authorization?"
+  puts "Do you have a CEX.IO API Key?"
 else
   puts "Welcome to the pleasure of automated trading on the world's best cryptocurrency market!"
   puts "This software atomates all market operations of buying, selling, placing orders, etc., in a secure and profitable way."
   puts "You are not required to have any trading experience. You only need to provide your authorizations details."
   puts "CEX.io Bot does the job.!"
-  puts "Do you have autorization to access this market?"
+  puts "Do you have an API Key to access this market?"
 end
 
 authorized = gets.chomp.upcase == "Y" ? true : false
 if authorized
-  puts "Please enter your authorization details:"
+  puts "Please enter your CEX.IO API KEY details:"
   print "User Name: "
   usr = gets.chomp
   puts ""
@@ -30,7 +32,7 @@ if authorized
   secret = gets.chomp
   puts ""
 else
-  puts "Autorization is required to access this market."
+  puts "I'm sorry, but an API Key is required to access this market."
   puts "Do you whant to run the Bot in a demo mode?"
   demo = gets.chomp.upcase == "Y" ? true : false
 end
@@ -42,21 +44,22 @@ elsif demo
   connect = CEX::API.new(DEMO_USR, DEMO_KEY, DEMO_SECRET)
 end
 puts "What do you want to do next?"
-puts "Please choose your desired operation: 1: Check balance, 2: , 3: 
-1. ticker(couple = 'GHS/BTC') - get ticker
-2. order_book(couple = 'GHS/BTC') - get order
-3. get_myfee - get trading fees
-4. balance() - get your balance
-5. current_orders(couple = 'GHS/BTC') - get open order
-6. cancel_order(order_id) - cancel order №order_id
-7. place_order(ptype = 'buy', amount = 1, price = 1, couple = 'GHS/BTC') - create order
-8. convert(couple = 'GHS/BTC', amount = 1) - Converts 1 GHS to BTC"
+puts "Please choose your desired operation:
+1: Check balance
+2: Start Bot in the automatic trading mode
+3. Get trading fees
+4. Get order book for a specific pair
+5. Get the list of the open orders
+6. Cancel an order
+7. Place an order
+8. Convert currency
+9. Get ticker"
 operation = gets.to_i
 if operation == 1
   connect.balance.each do |key, value|
     print "#{key} : "
     value.each { |key1, value1| print "#{key1} : #{value1} " } if value.is_a?(Hash)
-    puts ''
+    puts ""
   end
 elsif operation == 2
   connect.trade

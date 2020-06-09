@@ -32,7 +32,7 @@ if authorized
   puts ""
 else
   puts "I'm sorry, but an API Key is required to access this market."
-  puts "Do you whant to run the Bot in a demo mode?"
+  puts "Do you whant to run the Bot in the demo mode?"
   demo = gets.chomp.upcase == "Y" ? true : false
 end
 if authorized
@@ -42,8 +42,10 @@ elsif demo
   puts "Bot is running in the demo mode."
   connect = CEX::API.new(DEMO_USR, DEMO_KEY, DEMO_SECRET)
 end
-puts "What do you want to do next?"
-puts "Please choose your desired operation:
+run = true
+while run
+  puts "What do you want to do next?"
+  puts "Please choose your desired operation:
 1: Check balance
 2: Start Bot in the automatic trading mode
 3. Get trading fees
@@ -52,14 +54,25 @@ puts "Please choose your desired operation:
 6. Cancel an order
 7. Place an order
 8. Convert currency
-9. Get ticker"
-operation = gets.to_i
-if operation == 1
-  (connect.OPS(operation - 1)).each do |key, value|
-    print "#{key} : "
-    value.each { |key1, value1| print "#{key1} : #{value1} " } if value.is_a?(Hash)
-    puts ""
+9. Get ticker
+You chose option: "
+  operation = gets.to_i
+  if operation == 1
+    (connect.OPS(operation - 1)).each do |key, value|
+      print "#{key} : "
+      value.each { |key1, value1| print "#{key1} : #{value1} " } if value.is_a?(Hash)
+      puts ""
+    end
+  elsif operation == 2
+    puts "The Bot is now running in the automatic mode. Type q to stop."
+    while run
+      char = STDIN.getch
+      connect.autotrade
+      break if char == "q"
+    end
+    # (connect.OPS(operation - 1))(PARAMETERS))
+  else
   end
-elsif operation == 2
-  connect.autotrade
+  puts "Do you want to continue?"
+  run = gets.chomp.upcase == "Y" ? true : false
 end

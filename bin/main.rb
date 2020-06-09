@@ -1,10 +1,10 @@
 #!/usr/bin/env ruby
 require_relative '../lib/cexio'
 
-puts 'Testing connecting with the CEX.IO API'
-usr = 'up100854764'
-api_key = 'KRBDeKmP5KkEiWUSpYcR0HcdgQg'
-sec = '2NR1o4bf3OOn7HRPdk5HM4jzJyc'
+puts 'Testing connection with the CEX.IO API'
+usr = 'up131139167'
+api_key = 'NJGrN6Dev9M57nyxQDaFQzZa4Q'
+sec = 'MI87dH6sDIh1g0aQQNfV1PdaimQ'
 cex = CEX::API.new(usr, api_key, sec)
 
 cex.balance.each do |key, value|
@@ -13,4 +13,4 @@ cex.balance.each do |key, value|
   puts ''
 end
 
-puts 'Congratulations! My Bot project setup completed!'
+puts 'Congratulations! My Bot project setup is completed!'

@@ -45,7 +45,7 @@ puts "What do you want to do next?"
 puts "Please choose your desired operation: 1: Check balance, 2: , 3: 
 1. ticker(couple = 'GHS/BTC') - get ticker
 2. order_book(couple = 'GHS/BTC') - get order
-3.get_myfee
+3. get_myfee - get trading fees
 4. balance() - get your balance
 5. current_orders(couple = 'GHS/BTC') - get open order
 6. cancel_order(order_id) - cancel order №order_id
@@ -53,7 +53,11 @@ puts "Please choose your desired operation: 1: Check balance, 2: , 3:
 8. convert(couple = 'GHS/BTC', amount = 1) - Converts 1 GHS to BTC"
 operation = gets.to_i
 if operation == 1
-  connect.balance
+  connect.balance.each do |key, value|
+    print "#{key} : "
+    value.each { |key1, value1| print "#{key1} : #{value1} " } if value.is_a?(Hash)
+    puts ''
+  end
 elsif operation == 2
   connect.trade
 end

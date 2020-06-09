@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require_relative '../lib/cexio'
+<<<<<<< HEAD
 require 'io/console'
 DEMO_USR = 'up131139167'.freeze
 DEMO_KEY = 'NJGrN6Dev9M57nyxQDaFQzZa4Q'.freeze
@@ -85,3 +86,19 @@ You chose option: "
   puts 'It was a pleasure serving you! See you soon!' unless continue
   run = continue 
 end
+=======
+
+puts 'Testing connection with the CEX.IO API'
+usr = 'up131139167'
+api_key = 'NJGrN6Dev9M57nyxQDaFQzZa4Q'
+sec = 'MI87dH6sDIh1g0aQQNfV1PdaimQ'
+cex = CEX::API.new(usr, api_key, sec)
+
+cex.balance.each do |key, value|
+  print "#{key} : "
+  value.each { |key1, value1| print "#{key1} : #{value1} " } if value.is_a?(Hash)
+  puts ''
+end
+
+puts 'Congratulations! My Bot project setup is completed!'
+>>>>>>> a33fd38598be5486e2feb37bd070546875f296ff

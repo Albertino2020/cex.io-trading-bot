@@ -70,9 +70,14 @@ You chose option: "
       connect.autotrade
       break if char == "q"
     end
+    puts "I got you. I am now running your desired operation."
     # (connect.OPS(operation - 1))(PARAMETERS))
   else
   end
   puts "Do you want to continue?"
-  run = gets.chomp.upcase == "Y" ? true : false
+  continue = gets.chomp.upcase == "Y" ? true : false
+  if !continue
+    puts "It was a pleasure serving you! See you soon!"
+  end
+  run = continue
 end

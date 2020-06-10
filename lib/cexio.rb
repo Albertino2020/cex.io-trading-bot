@@ -66,7 +66,7 @@ module CEX
       api_call('cancel_order', { id: order_id.to_s }, true, '', false)
     end
 
-    def place_order(ptype = 'buy', amount = 1, price = 1, couple = 'GHS/BTC')
+    def place_order(ptype, amount, price, couple)
       api_call('place_order', { type: ptype, amount: amount.to_s, price: price.to_s }, true, couple)
     end
 

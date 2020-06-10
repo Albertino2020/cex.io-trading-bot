@@ -57,5 +57,17 @@ describe Trade do
         expect(connect.get_myfee).to_not eql nil
       end
     end
+    describe "#place_order" do
+      it "places buy/sell orders on the CEX.IO platform" do
+        expect(connect.place_order("buy", 1, 1, "GHS/BTC").class).to eql(Hash)
+      end
+      it "does not place orders if arguments missing" do
+        expect { connect.place_order }.to raise_error(ArgumentError)
+        expect { connect.place_order(1, 1, "GHS/BTC") }.to raise_error(ArgumentError)
+        expect { connect.place_order(1, "GHS/BTC") }.to raise_error(ArgumentError)
+        expect { connect.place_order("buy", 1) }.to raise_error(ArgumentError)
+        expect { connect.place_order("buy", "GHS/BTC") }.to raise_error(ArgumentError)
+      end
+    end
   end
 end

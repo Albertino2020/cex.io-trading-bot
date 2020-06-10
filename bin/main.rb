@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
-require_relative '../lib/cexio'
+# require_relative '../lib/cexio'
+require_relative '../lib/strategy'
 require 'io/console'
 DEMO_USR = 'up131139167'.freeze
 DEMO_KEY = 'NJGrN6Dev9M57nyxQDaFQzZa4Q'.freeze
@@ -40,10 +41,10 @@ else
 end
 if authorized
   puts 'You have successfully connected to a real account.'
-  connect = CEX::API.new(usr, api_key, secret)
+  connect = Trade::API.new(usr, api_key, secret)
 elsif demo
   puts 'Bot is running in the demo mode.'
-  connect = CEX::API.new(DEMO_USR, DEMO_KEY, DEMO_SECRET)
+  connect = Trade::API.new(DEMO_USR, DEMO_KEY, DEMO_SECRET)
 end
 run = true
 while run
@@ -52,34 +53,39 @@ while run
 1: Check balance
 2: Start Bot in the automatic trading mode
 3. Get trading fees
-4. Get order book for a specific pair
-5. Get the list of the open orders
-6. Cancel an order
-7. Place an order
-8. Convert currency
-9. Get ticker
 You chose option: "
   operation = gets.to_i
   if operation == 1
+    puts 'I got you. Bellow is your account balance for each currency.'
     connect.ops(operation - 1).each do |key, value|
-      print "#{key} : "
+      print "#{key} : " unless key.to_s == 'timestamp' || key.to_s == 'username'
       value.each { |key1, value1| print "#{key1} : #{value1} " } if value.is_a?(Hash)
       puts ''
     end
-  elsif operation != 2
-    puts 'I got you. I am now running your desired operation.'
-    # (connect.OPS(operation - 1))(PARAMETERS))
+  elsif operation == 3
+    puts 'I got you. Bellow are the current trading fees'
+    connect.ops(operation - 1).each do |key, value|
+      next unless key.to_s == 'data'
+
+      value.each do |key1, value1|
+        print "#{key1} : "
+        value1.each { |key2, value2| print "#{key2} : #{value2}% " } if value1.is_a?(Hash)
+        puts ''
+      end
+    end
   else
     puts 'The Bot is now running in the automatic mode. Type q to stop.'
   end
-
-  while operation == 2
+  while operation == 2 && !demo
+    connect.autotrade
     char = STDIN.getch
     break if char == 'q'
-
-    connect.autotrade
   end
-
+  while operation == 2 && demo
+    connect.demotrade
+    char = STDIN.getch
+    break if char == 'q'
+  end
   puts 'Do you want to continue?'
   continue = gets.chomp.upcase == 'Y'
   puts 'It was a pleasure serving you! See you soon!' unless continue

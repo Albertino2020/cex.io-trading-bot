@@ -83,7 +83,7 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- I give credit to the ASD whose I borrowed part of the CEX.io API access code that was used in this project.
+- I give credit to @t0pep0 (Ivan) whose I borrowed part of his CEX.io API code, developed in 2013, that was used in this project.
 
 ## 📝 License
 

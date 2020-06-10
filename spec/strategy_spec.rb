@@ -32,5 +32,14 @@ describe Trade do
         expect { connect.autotrade(connect) }.to raise_error(ArgumentError)
       end
     end
+
+    describe "#demotrade" do
+      it "executes demo trading operations automatically." do
+        expect { connect.demotrade }.to_not raise_error
+      end
+      it "raises error if arguments passed " do
+        expect { connect.demotrade(connect) }.to raise_error(ArgumentError)
+      end
+    end
   end
 end

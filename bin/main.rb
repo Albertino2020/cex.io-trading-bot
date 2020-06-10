@@ -6,20 +6,22 @@ DEMO_USR = 'up131139167'.freeze
 DEMO_KEY = 'NJGrN6Dev9M57nyxQDaFQzZa4Q'.freeze
 DEMO_SECRET = 'MI87dH6sDIh1g0aQQNfV1PdaimQ'.freeze
 
-puts 'Are you familiar with the CEX.IO Trading Bot?'
+puts 'Are you familiar with the CEX.IO Trading Bot (Y/N)?'
 
 familiar = gets.chomp.upcase == 'Y'
 
 if familiar
-  puts 'Do you have a CEX.IO API Key?'
+  puts 'Do you have a CEX.IO API Key (Y/N)?'
 else
   puts "Welcome to the pleasure of automated trading on the world's best cryptocurrency market!"
+  puts ""
   puts "This software atomates all market operations of buying, selling, placing orders, etc.,
   in a secure and profitable way."
+  puts ""
   puts "You are not required to have any trading experience. You only need to provide your
-  API Key details."
-  puts 'CEX.io Bot does the job.!'
-  puts 'Do you have an API Key to access this market?'
+  API Key details. CEX.io Bot does the job.!"
+  puts ""
+  puts 'Do you have an API Key to access this market (Y/N)?'
 end
 
 authorized = gets.chomp.upcase == 'Y'
@@ -36,7 +38,7 @@ if authorized
   puts ''
 else
   puts "I'm sorry, but an API Key is required to access this market."
-  puts 'Do you whant to run the Bot in the demo mode?'
+  puts 'Do you whant to run the Bot in the demo mode (Y/N)?'
   demo = gets.chomp.upcase == 'Y'
 end
 if authorized
@@ -88,7 +90,7 @@ You chose option: "
     char = STDIN.getch
     break if char == 'q'
   end
-  puts 'Do you want to continue?'
+  puts 'Do you want to continue (Y/N)?'
   continue = gets.chomp.upcase == 'Y'
   puts 'It was a pleasure serving you! See you soon!' unless continue
   run = continue

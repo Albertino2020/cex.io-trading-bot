@@ -2,7 +2,12 @@
 
 > CEX.io Trading Bot is an online trading software that connects user to his or her CEX.io trading account via CEX.io API and performs trading of cryptocurrencies automatically on the CEX.io platform.
 
-![screenshot](./app_screenshot.png)
+![screenshot](./img/cexio.png)
+![screenshot](./img/cexio2.png)
+![screenshot](./img/vsc-ruby.png)
+![screenshot](./img/vsc-ruby2.png)
+![screenshot](./img/vsc-ruby3.png)
+![screenshot](./img/vsc-ruby5.png)
 
 This bot version, developed in Ruby, meets the requirements of my Ruby Capstone Project in the Microverse Main Curriculum. 
 

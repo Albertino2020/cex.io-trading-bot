@@ -41,5 +41,13 @@ describe Trade do
         expect { connect.demotrade(connect) }.to raise_error(ArgumentError)
       end
     end
+    describe "#balance" do
+      it "returns account balances for all currency pairs" do
+        expect(connect.balance.class).to eql(Hash)
+      end
+      it "does not return a nil object" do
+        expect(connect.balance).to_not eql nil
+      end
+    end
   end
 end

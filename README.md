@@ -60,9 +60,6 @@ Follow the instructions presented above to set up and run the bot on your local 
 
 When prompted, follow instructions on the screen.
 
-### Run tests
-
-
 ## Author
 
 👤 Albertino Francisco

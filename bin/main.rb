@@ -53,23 +53,26 @@ while run
 1: Check balance
 2: Start Bot in the automatic trading mode
 3. Get trading fees
-4. Get order book for a specific pair
-5. Get the list of the open orders
-6. Cancel an order
-7. Place an order
-8. Convert currency
-9. Get ticker
 You chose option: "
   operation = gets.to_i
   if operation == 1
+    puts "I got you. Bellow is your account balance for each currency."
     connect.ops(operation - 1).each do |key, value|
-      print "#{key} : "
+      print "#{key} : " unless key.to_s == "timestamp" || key.to_s == "username"
       value.each { |key1, value1| print "#{key1} : #{value1} " } if value.is_a?(Hash)
       puts ""
     end
-  elsif operation != 2
-    puts "I got you. I am now running your desired operation."
-    # (connect.OPS(operation - 1))(PARAMETERS))
+  elsif operation == 3
+    puts "I got you. Bellow are the current trading fees"
+    connect.ops(operation - 1).each do |key, value|
+      if key.to_s == "data" 
+        value.each do |key1, value1|
+          print "#{key1} : "
+          value1.each { |key2, value2| print "#{key2} : #{value2}% " } if value1.is_a?(Hash)
+          puts ""
+      end
+      end 
+    end
   else
     puts "The Bot is now running in the automatic mode. Type q to stop."
   end

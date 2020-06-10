@@ -74,15 +74,17 @@ You chose option: "
       end
     end
   else
-    puts 'The Bot is now running in the automatic mode. Type q to stop.'
+    puts 'The Bot is now running in the automatic mode...'
   end
   while operation == 2 && !demo
     connect.autotrade
+    puts 'The Bot is running in the automatic mode. Type q to stop.'
     char = STDIN.getch
     break if char == 'q'
   end
   while operation == 2 && demo
     connect.demotrade
+    puts 'The Bot is running in the automatic mode. Type q to stop.'
     char = STDIN.getch
     break if char == 'q'
   end

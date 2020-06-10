@@ -63,7 +63,7 @@ When prompted, follow instructions on the screen.
 ### Run tests
 
 
-## Authors
+## Author
 
 👤 Albertino Francisco
 
@@ -83,7 +83,7 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- Hat tip to anyone whose code was used
+- I give credit to the ASD whose I borrowed part of the CEX.io API access code that was used in this project.
 
 ## 📝 License
 

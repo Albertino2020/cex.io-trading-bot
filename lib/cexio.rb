@@ -1,4 +1,3 @@
-# require 'cexio/version'
 require 'openssl'
 require 'net/http'
 require 'net/https'

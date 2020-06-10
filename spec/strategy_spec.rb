@@ -1,5 +1,5 @@
-require './lib/strategy.rb'
-require './lib/cexio.rb'
+require_relative '../lib/strategy.rb'
+require_relative '../lib/cexio.rb'
 
 describe Trade do
   describe Trade::API do

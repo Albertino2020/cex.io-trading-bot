@@ -1,54 +1,54 @@
 #!/usr/bin/env ruby
-require_relative '../lib/cexio'
-require_relative '../lib/strategy'
-require 'io/console'
-DEMO_USR = 'up131139167'.freeze
-DEMO_KEY = 'NJGrN6Dev9M57nyxQDaFQzZa4Q'.freeze
-DEMO_SECRET = 'MI87dH6sDIh1g0aQQNfV1PdaimQ'.freeze
+# require_relative '../lib/cexio'
+require_relative "../lib/strategy"
+require "io/console"
+DEMO_USR = "up131139167".freeze
+DEMO_KEY = "NJGrN6Dev9M57nyxQDaFQzZa4Q".freeze
+DEMO_SECRET = "MI87dH6sDIh1g0aQQNfV1PdaimQ".freeze
 
-puts 'Are you familiar with the CEX.IO Trading Bot?'
+puts "Are you familiar with the CEX.IO Trading Bot?"
 
-familiar = gets.chomp.upcase == 'Y'
+familiar = gets.chomp.upcase == "Y"
 
 if familiar
-  puts 'Do you have a CEX.IO API Key?'
+  puts "Do you have a CEX.IO API Key?"
 else
   puts "Welcome to the pleasure of automated trading on the world's best cryptocurrency market!"
   puts "This software atomates all market operations of buying, selling, placing orders, etc.,
   in a secure and profitable way."
   puts "You are not required to have any trading experience. You only need to provide your
   API Key details."
-  puts 'CEX.io Bot does the job.!'
-  puts 'Do you have an API Key to access this market?'
+  puts "CEX.io Bot does the job.!"
+  puts "Do you have an API Key to access this market?"
 end
 
-authorized = gets.chomp.upcase == 'Y'
+authorized = gets.chomp.upcase == "Y"
 if authorized
-  puts 'Please enter your CEX.IO API KEY details:'
-  print 'User Name: '
+  puts "Please enter your CEX.IO API KEY details:"
+  print "User Name: "
   usr = gets.chomp
-  puts ''
-  print 'API KEY: '
+  puts ""
+  print "API KEY: "
   api_key = gets.chomp
-  puts ''
-  print 'Secret Code: '
+  puts ""
+  print "Secret Code: "
   secret = gets.chomp
-  puts ''
+  puts ""
 else
   puts "I'm sorry, but an API Key is required to access this market."
-  puts 'Do you whant to run the Bot in the demo mode?'
-  demo = gets.chomp.upcase == 'Y'
+  puts "Do you whant to run the Bot in the demo mode?"
+  demo = gets.chomp.upcase == "Y"
 end
 if authorized
-  puts 'You have successfully connected to a real account.'
-  connect = CEX::API.new(usr, api_key, secret)
+  puts "You have successfully connected to a real account."
+  connect = Trade::API.new(usr, api_key, secret)
 elsif demo
-  puts 'Bot is running in the demo mode.'
-  connect = CEX::API.new(DEMO_USR, DEMO_KEY, DEMO_SECRET)
+  puts "Bot is running in the demo mode."
+  connect = Trade::API.new(DEMO_USR, DEMO_KEY, DEMO_SECRET)
 end
 run = true
 while run
-  puts 'What do you want to do next?'
+  puts "What do you want to do next?"
   puts "Please choose your desired operation:
 1: Check balance
 2: Start Bot in the automatic trading mode
@@ -65,24 +65,26 @@ You chose option: "
     connect.ops(operation - 1).each do |key, value|
       print "#{key} : "
       value.each { |key1, value1| print "#{key1} : #{value1} " } if value.is_a?(Hash)
-      puts ''
+      puts ""
     end
   elsif operation != 2
-    puts 'I got you. I am now running your desired operation.'
+    puts "I got you. I am now running your desired operation."
     # (connect.OPS(operation - 1))(PARAMETERS))
   else
-    puts 'The Bot is now running in the automatic mode. Type q to stop.'
+    puts "The Bot is now running in the automatic mode. Type q to stop."
   end
-
-  while operation == 2
-    char = STDIN.getch
-    break if char == 'q'
-
-    connect.autotrade
-  end
-
-  puts 'Do you want to continue?'
-  continue = gets.chomp.upcase == 'Y'
-  puts 'It was a pleasure serving you! See you soon!' unless continue
+    while operation == 2 && !demo
+      connect.autotrade
+      char = STDIN.getch
+      break if char == "q"
+    end
+    while operation == 2 && demo
+      connect.demotrade
+      char = STDIN.getch
+      break if char == "q"
+    end
+  puts "Do you want to continue?"
+  continue = gets.chomp.upcase == "Y"
+  puts "It was a pleasure serving you! See you soon!" unless continue
   run = continue
 end

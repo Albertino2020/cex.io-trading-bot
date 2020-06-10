@@ -1,21 +1,23 @@
-# Project Name
+# CEX.io Trading Bot
 
-> One paragraph statement about the project.
+> CEX.io Trading Bot is an online trading software that connects user to his or her CEX.io trading account via CEX.io API and performs trading of cryptocurrencies automatically on the CEX.io platform.
 
 ![screenshot](./app_screenshot.png)
 
-Additional description about the project and its features.
+This bot version, developed in Ruby, meets the requirements of my Ruby Capstone Project in the Microverse Main Curriculum. 
+
+However, the project is still under development. Therefore, caution is advised while using it in a real trading account. 
 
 ## Built With
 
-- Major languages,
-- frameworks,
-- technologies used
+- Ruby,
+- Git, Github
+- RSpec
+- Gitflows
 
 ## Live Demo
 
-[Live Demo Link](https://livedemo.com)
-
+[Live Demo Link](https://github.com/Albertino2020/cex.io-trading-bot/)
 
 ## Getting Started
 

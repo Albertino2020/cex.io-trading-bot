@@ -24,6 +24,13 @@ describe Trade do
       end
     end
     # rubocop: enable Lint/LiteralAsCondition
-
+    describe "#autotrade" do
+      it "executes live trading operations automatically in the CEX.io trading platform" do
+        expect { connect.autotrade }.to_not raise_error
+      end
+      it "raises error if arguments passed " do
+        expect { connect.autotrade(connect) }.to raise_error(ArgumentError)
+      end
+    end
   end
 end

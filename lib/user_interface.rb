@@ -1,3 +1,5 @@
+attr_writer :demo, :usr, :api_key, :secret
+
 def on_start_intro
   puts "Are you familiar with the CEX.IO Trading Bot (Y/N)?"
 end
@@ -15,5 +17,24 @@ def follow_up(familiar)
         API Key details. CEX.io Bot does the job.!"
     puts ""
     puts "Do you have an API Key to access this market (Y/N)?"
+  end
+end
+
+def check_key(authorized)
+  if authorized
+    puts "Please enter your CEX.IO API KEY details:"
+    print "User Name: "
+    @usr = gets.chomp
+    puts ""
+    print "API KEY: "
+    @api_key = gets.chomp
+    puts ""
+    print "Secret Code: "
+    @secret = gets.chomp
+    puts ""
+  else
+    puts "I'm sorry, but an API Key is required to access this market."
+    puts "Do you whant to run the Bot in the demo mode (Y/N)?"
+    @demo = gets.chomp.upcase == "Y"
   end
 end

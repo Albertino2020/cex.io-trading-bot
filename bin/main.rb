@@ -8,15 +8,15 @@ DEMO_SECRET = 'MI87dH6sDIh1g0aQQNfV1PdaimQ'.freeze
 
 on_start_intro
 
-familiarity = gets.chomp.upcase == 'Y'
+familiar = gets.chomp.upcase == 'Y'
 
-follow_up(familiarity)
+follow_up(familiar)
 
-authorization = gets.chomp.upcase == 'Y'
+authorized= gets.chomp.upcase == 'Y'
 
-check_key(authorization)
+check_key(authorized)
 
-connect(authorization)
+connect(authorized)
 
 run = true
 

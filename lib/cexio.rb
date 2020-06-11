@@ -10,7 +10,7 @@ module CEX
   # docs
   class API
     attr_accessor :api_key, :api_secret, :username, :nonce_v
-    OPS = %w[balance autotrade get_myfee order_book current_orders cancel_order place_order convert].freeze
+    OPS = %w[balance autotrade getmyfee order_book current_orders cancel_order place_order convert].freeze
 
     def initialize(username, api_key, api_secret)
       self.username = username
@@ -84,12 +84,9 @@ module CEX
       api_call('get_address', { currency: currency }, true, '', true)
     end
 
-    # rubocop: disable Naming/AccessorMethodName
-    def get_myfee
+    def getmyfee
       api_call('get_myfee', {}, true, '', true)
     end
-
-    # rubocop: enable Naming/AccessorMethodName
 
     def hashrate
       api_call('ghash.io', {}, true, 'hashrate')

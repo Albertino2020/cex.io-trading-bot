@@ -1,1 +1,7 @@
-/cex.io-trading-bot
+*.gem
+*.rbc
+.bundle
+.config
+.gitkeep
+Gemfile.lock
+spec/reports

@@ -41,11 +41,7 @@ There are varying ways of accessing the command line, depending on what operatin
 
 While in the command prompt, type 'cd' and press ENTER to make sure you are in the root directory.
 
-<<<<<<< HEAD
 Type 'git clone https://github.com/Albertino2020/cex.io-trading-bot.git' and press ENTER, to copy the program to your local machine.
-=======
-type 'git clone https://github.com/Albertino2020/cex.io-trading-bot.git' and press ENTER, to copy the program to your local machine.
->>>>>>> 31b80ad05ab2a1152ed75a1ccad8c950659a7f9d
 
 Type 'cd cex.io-trading-bot' and press ENTER, to go to the CEX.io Bot folder in your local machine.
 

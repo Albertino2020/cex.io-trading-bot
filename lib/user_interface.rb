@@ -76,7 +76,7 @@ def execute(operation)
     getbalance(operation)
   elsif operation == 3
     getfee(operation)
-  else
+  elsif operation == 2
     run_bot
   end
 end

@@ -13,22 +13,25 @@ familiarity = gets.chomp.upcase == "Y"
 follow_up(familiarity)
 
 authorization = gets.chomp.upcase == "Y"
+
 check_key(authorization)
+
 connect(authorization)
+
 run = true
+
 while run
   on_connection_options
   operation = gets.to_i
+  on_intro(operation)
   if operation == 1
-    puts "I got you. Bellow is your account balance for each currency."
-    connect.ops(operation - 1).each do |key, value|
+    connect(authorization).ops(operation - 1).each do |key, value|
       print "#{key} : " unless key.to_s == "timestamp" || key.to_s == "username"
       value.each { |key1, value1| print "#{key1} : #{value1} " } if value.is_a?(Hash)
       puts ""
     end
   elsif operation == 3
-    puts "I got you. Bellow are the current trading fees"
-    connect.ops(operation - 1).each do |key, value|
+    connect(authorization).ops(operation - 1).each do |key, value|
       next unless key.to_s == "data"
 
       value.each do |key1, value1|
@@ -38,7 +41,6 @@ while run
       end
     end
   else
-    puts "The Bot is now running in the automatic mode..."
   end
   while operation == 2 && !demo
     connect.autotrade

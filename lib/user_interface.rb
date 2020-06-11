@@ -59,3 +59,15 @@ def on_connection_options
   3. Get trading fees
   You chose option: "
 end
+
+def on_intro(option)
+  @message_intro = "I got you. Bellow is your account "
+  if option == 1
+    @message = "balance for each currency."
+  elsif option == 2
+    @message = "demo mode."
+  elsif option == 3
+    @message = "trading fees for each currency."
+  end
+  puts @message_intro, @message
+end

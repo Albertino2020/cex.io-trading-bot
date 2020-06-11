@@ -20,10 +20,6 @@ However, the project is still under development. Therefore, caution is advised w
 - RSpec
 - Gitflows
 
-## Live Demo
-
-[Live Demo Link](https://github.com/Albertino2020/cex.io-trading-bot/)
-
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.

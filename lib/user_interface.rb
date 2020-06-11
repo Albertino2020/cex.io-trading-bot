@@ -61,13 +61,45 @@ def on_connection_options
 end
 
 def on_intro(option)
-  @message_intro = "I got you. Bellow is your account "
+  @message_intro = "I got you. "
   if option == 1
-    @message = "balance for each currency."
+    @message = "Your account balance for each currency: "
   elsif option == 2
-    @message = "demo mode."
+    @message = "Running in the demo mode. Type q to stop." if @demo
+    @message = "The Bot is running in the automatic mode. Type q to stop." unless @demo
   elsif option == 3
-    @message = "trading fees for each currency."
+    @message = "Your trading fees for each currency: "
   end
   puts @message_intro, @message
+end
+
+def execute(operation)
+  if operation == 1
+    connect(@authorization).ops(operation - 1).each do |key, value|
+      print "#{key} : " unless key.to_s == "timestamp" || key.to_s == "username"
+      value.each { |key1, value1| print "#{key1} : #{value1} " } if value.is_a?(Hash)
+      puts ""
+    end
+  elsif operation == 3
+    connect(@authorization).ops(operation - 1).each do |key, value|
+      next unless key.to_s == "data"
+
+      value.each do |key1, value1|
+        print "#{key1} : "
+        value1.each { |key2, value2| print "#{key2} : #{value2}% " } if value1.is_a?(Hash)
+        puts ""
+      end
+    end
+  else
+    while !@demo
+      connect(@authorization).autotrade
+      char = STDIN.getch
+      break if char == "q"
+    end
+    while @demo
+      connect(@authorization).demotrade
+      char = STDIN.getch
+      break if char == "q"
+    end
+  end
 end

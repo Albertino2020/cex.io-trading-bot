@@ -1,11 +1,12 @@
 #!/usr/bin/env ruby
 require_relative '../lib/strategy'
+require_relative '../lib/user_interface'
 require 'io/console'
 DEMO_USR = 'up131139167'.freeze
 DEMO_KEY = 'NJGrN6Dev9M57nyxQDaFQzZa4Q'.freeze
 DEMO_SECRET = 'MI87dH6sDIh1g0aQQNfV1PdaimQ'.freeze
 
-puts 'Are you familiar with the CEX.IO Trading Bot (Y/N)?'
+on_start_intro
 
 familiar = gets.chomp.upcase == 'Y'
 

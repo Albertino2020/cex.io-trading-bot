@@ -10,7 +10,7 @@ def follow_up(familiar)
   else
     puts "Welcome to the pleasure of automated trading on the world's best cryptocurrency market!"
     puts ""
-    puts "This software atomates all market operations of buying, selling, placing orders, etc.,
+    puts "This software automates all market operations of buying, selling, placing orders, etc.,
         in a secure and profitable way."
     puts ""
     puts "You are not required to have any trading experience. You only need to provide your
@@ -34,7 +34,7 @@ def check_key(authorized)
     puts ""
   else
     puts "I'm sorry, but an API Key is required to access this market."
-    puts "Do you whant to run the Bot in the demo mode (Y/N)?"
+    puts "Do you want to run the Bot in the demo mode (Y/N)?"
     @demo = gets.chomp.upcase == "Y"
   end
 end

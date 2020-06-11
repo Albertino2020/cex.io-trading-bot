@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-# require_relative '../lib/cexio'
 require_relative '../lib/strategy'
 require 'io/console'
 DEMO_USR = 'up131139167'.freeze

@@ -9,8 +9,7 @@ require 'addressable/uri'
 module CEX
   # docs
   class API
-    attr_reader :api_key, :api_secret, :username, :nonce_v
-    attr_writer :api_key, :api_secret, :username, :nonce_v
+    attr_accessor :api_key, :api_secret, :username, :nonce_v
     OPS = %w[balance autotrade get_myfee order_book current_orders cancel_order place_order convert].freeze
 
     def initialize(username, api_key, api_secret)

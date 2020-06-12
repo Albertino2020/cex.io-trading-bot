@@ -13,3 +13,16 @@ describe "#on_start_intro" do
     expect { on_start_intro(@authorized) }.to raise_error(ArgumentError)
   end
 end
+describe "#follow_up" do
+  it "displays introductory message to user on start " do
+    expect(follow_up(true)).to eql(puts "Do you have a CEX.IO API Key (Y/N)?")
+  end
+  it "returns always a string object" do
+    expect { follow_up(nil) }.to_not raise_error
+    expect(follow_up(false).to_s.class).to eql(String)
+    expect(follow_up(true).to_s.class).to_not eql(nil)
+  end
+  it "raises error if no arguments passed " do
+    expect { follow_up }.to raise_error(ArgumentError)
+  end
+end

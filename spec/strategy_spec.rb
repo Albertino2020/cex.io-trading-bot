@@ -47,12 +47,12 @@ describe Trade do
         expect(connect.balance).to_not eql nil
       end
     end
-    describe '#get_myfee' do
+    describe '#getmyfee' do
       it 'returns the list of currently applicable fees for all currency pairs' do
-        expect(connect.get_myfee.class).to eql(Hash)
+        expect(connect.getmyfee.class).to eql(Hash)
       end
       it 'does not return a nil object' do
-        expect(connect.get_myfee).to_not eql nil
+        expect(connect.getmyfee).to_not eql nil
       end
     end
     describe '#place_order' do

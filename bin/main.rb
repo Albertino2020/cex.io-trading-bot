@@ -12,7 +12,7 @@ familiar = gets.chomp.upcase == 'Y'
 
 follow_up(familiar)
 
-authorized= gets.chomp.upcase == 'Y'
+authorized = gets.chomp.upcase == 'Y'
 
 check_key(authorized)
 

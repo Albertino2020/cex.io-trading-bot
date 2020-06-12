@@ -20,10 +20,6 @@ However, the project is still under development. Therefore, caution is advised w
 - RSpec
 - Gitflows
 
-## Live Demo
-
-[Live Demo Link](https://github.com/Albertino2020/cex.io-trading-bot/)
-
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
@@ -45,9 +41,9 @@ There are varying ways of accessing the command line, depending on what operatin
 
 While in the command prompt, type 'cd' and press ENTER to make sure you are in the root directory.
 
-type 'git clone https://github.com/Albertino2020/cex.io-trading-bot.git' and press ENTER, to copy the program to your local machine.
+Type 'git clone https://github.com/Albertino2020/cex.io-trading-bot.git' and press ENTER, to copy the program to your local machine.
 
-type 'cd cex.io-trading-bot' and press ENTER, to go to the CEX.io Bot folder in your local machine.
+Type 'cd cex.io-trading-bot' and press ENTER, to go to the CEX.io Bot folder in your local machine.
 
 Type 'bin/main.rb' and press ENTER to run the Bot.
 

@@ -3,14 +3,7 @@ require_relative '../lib/cexio'
 module Trade
   # docs
   class API < CEX::API
-    # rubocop: disable Metrics/MethodLength
-    def autotrade
-      hash = balance
-      hash.each do |key, value|
-        print "#{key} : "
-        value.each { |key1, value1| print "#{key1} : #{value1} " } if value.is_a?(Hash)
-        puts ''
-      end
+    def on_trade_arr
       aux = []
       i = 0
       balance.each do |key, value|
@@ -23,6 +16,11 @@ module Trade
           end
         end
       end
+      aux
+    end
+
+    def autotrade
+      aux = on_trade_arr
       2.upto(aux.length - 1) do |index|
         if aux[index][1].to_f.positive? && aux[index][0] != 'BTC'
           amount = aux[index][1].to_f
@@ -31,12 +29,11 @@ module Trade
           place_order('buy', amount, price, "#{currency}/BTC")
           puts "Order #{currency} sucessfully placed"
         else
-          puts 'You don«t have enough fund in your account for this operation.'
+          puts 'You dont have enough fund in your account for this operation.'
         end
       end
     end
 
-    # rubocop: enable Metrics/MethodLength
     def demotrade
       balance.each do |key, val|
         next unless val.is_a?(Hash)

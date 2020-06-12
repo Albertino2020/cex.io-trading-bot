@@ -9,9 +9,8 @@ require 'addressable/uri'
 module CEX
   # docs
   class API
-    attr_reader :api_key, :api_secret, :username, :nonce_v
-    attr_writer :api_key, :api_secret, :username, :nonce_v
-    OPS = %w[balance autotrade get_myfee order_book current_orders cancel_order place_order convert].freeze
+    attr_accessor :api_key, :api_secret, :username, :nonce_v
+    OPS = %w[balance autotrade getmyfee order_book current_orders cancel_order place_order convert].freeze
 
     def initialize(username, api_key, api_secret)
       self.username = username
@@ -85,12 +84,9 @@ module CEX
       api_call('get_address', { currency: currency }, true, '', true)
     end
 
-    # rubocop: disable Naming/AccessorMethodName
-    def get_myfee
+    def getmyfee
       api_call('get_myfee', {}, true, '', true)
     end
-
-    # rubocop: enable Naming/AccessorMethodName
 
     def hashrate
       api_call('ghash.io', {}, true, 'hashrate')
@@ -106,7 +102,7 @@ module CEX
 
     def signature
       str = nonce_v + username + api_key
-      OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), api_secret, str)
+      OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), api_secret, str.to_s)
     end
 
     def post(url, param)

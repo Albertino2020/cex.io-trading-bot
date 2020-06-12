@@ -50,8 +50,8 @@ def connect(authorized)
 end
 
 def on_connection_options
-  puts "What do you want to do next?"
-  puts "Please choose your desired operation:
+  puts "What do you want to do next?
+  Please choose your desired operation:
   1: Check balance
   2: Start Bot in the automatic trading mode
   3. Get trading fees

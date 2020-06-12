@@ -66,3 +66,22 @@ describe "#connect" do
       expect { connect }.to raise_error(ArgumentError)
     end
   end
+  describe "#on_connection_options" do
+    it "displays introductory message to user on connection" do
+      expect(on_connection_options).to eql(puts "What do you want to do next?
+        Please choose your desired operation:
+        1: Check balance
+        2: Start Bot in the automatic trading mode
+        3. Get trading fees
+        You chose option: ")
+    end
+    it "returns always an empty object" do
+      expect { on_connection_options }.to_not raise_error
+      expect(on_connection_options.class).to eql(NilClass)
+      expect(on_connection_options.to_s.class).to_not eql(nil)
+    end
+    it "raises error if arguments passed " do
+      expect { on_connection_options(nil) }.to raise_error(ArgumentError)
+      expect { on_connection_options(@authorized) }.to raise_error(ArgumentError)
+    end
+  end

@@ -1,4 +1,5 @@
 require_relative "../lib/user_interface"
+require_relative "../lib/strategy"
 describe "#on_start_intro" do
   it "displays introductory message to user on start " do
     expect(on_start_intro).to eql(puts "Are you familiar with the CEX.IO Trading Bot (Y/N)?")
@@ -37,7 +38,7 @@ describe "#follow_up" do
     expect { follow_up }.to raise_error(ArgumentError)
   end
 end
-describe "#chec_key" do
+describe "#check_key" do
   it "gets users inputs if user has an API Key" do
     puts "I am collecting sample API Key details from you. Please type SAMPLE values and press ENTER"
     expect { check_key(true) }.to_not raise_error
@@ -49,3 +50,19 @@ describe "#chec_key" do
     expect { follow_up }.to raise_error(ArgumentError)
   end
 end
+describe "#connect" do
+    it "connects user to a CEX.io real account if user has an API Key" do
+      expect { connect(true) }.to_not raise_error
+      @demo = false
+      expect(connect(true).class).to eql(Trade::API)
+    end
+    it "connects user to a CEX.io demo account if user doesn't have an API Key" do
+        expect { connect(false) }.to_not raise_error
+        @demo = true
+        expect(connect(false).class).to eql(Trade::API)
+      end
+
+    it "does not anything if no argument given" do
+      expect { connect }.to raise_error(ArgumentError)
+    end
+  end

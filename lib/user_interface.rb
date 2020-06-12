@@ -42,7 +42,7 @@ end
 def connect(authorized)
   if authorized
     puts "You have successfully connected to a real account."
-    @account = Trade::API.new(usr, api_key, secret)
+    @account = Trade::API.new(@usr, @api_key, @secret)
   elsif @demo
     puts "Bot is running in the demo mode."
     @account = Trade::API.new(DEMO_USR, DEMO_KEY, DEMO_SECRET)

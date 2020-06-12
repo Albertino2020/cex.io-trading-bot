@@ -80,8 +80,23 @@ describe "#connect" do
       expect(on_connection_options.class).to eql(NilClass)
       expect(on_connection_options.to_s.class).to_not eql(nil)
     end
-    it "raises error if arguments passed " do
+    it "raises error if arguments passed" do
       expect { on_connection_options(nil) }.to raise_error(ArgumentError)
       expect { on_connection_options(@authorized) }.to raise_error(ArgumentError)
+    end
+  end
+  describe "#on_intro" do
+    it "displays introductory message and guidance to user on operations" do
+      expect(on_intro(1)).to eql(puts @message_intro, @message)
+      expect(on_intro(2)).to eql(puts @message_intro, @message)
+      expect(on_intro(3)).to eql(puts @message_intro, @message)
+    end
+    it "returns always an empty object" do
+      expect { on_intro(@operation)}.to_not raise_error
+      expect(on_intro(@operation).class).to eql(NilClass)
+      expect(on_intro(@operation).to_s.class).to_not eql(nil)
+    end
+    it "raises error if no argument passed" do
+      expect { on_intro }.to raise_error(ArgumentError)
     end
   end

@@ -102,7 +102,7 @@ module CEX
 
     def signature
       str = nonce_v + username + api_key
-      OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), api_secret, str)
+      OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), api_secret, str.to_s)
     end
 
     def post(url, param)
